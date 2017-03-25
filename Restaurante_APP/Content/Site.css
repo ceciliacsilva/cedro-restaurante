@@ -1,4 +1,10 @@
-﻿body {
+﻿.navbar-custom {
+    color: black;
+    background-color: #fff;
+    border-color: #777;
+}
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
