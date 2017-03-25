@@ -8,8 +8,12 @@ namespace Restaurante_APP.Controllers
 {
     public class RestauranteController : Controller
     {
-        // GET: Restaurante
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Create()
         {
             return View();
         }

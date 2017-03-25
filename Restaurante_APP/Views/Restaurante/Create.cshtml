@@ -1,0 +1,26 @@
+﻿@model Restaurante_APP.Models.Restaurante
+@{
+    ViewBag.Title = "Create";
+}
+
+<div>
+    <br />
+    <h2>CADASTRO DE RESTAURANTE</h2>
+    <fieldset class="scheduler-border">
+        <legend  class="scheduler-border">Dados</legend>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <p>Nome do restaurante</p>
+
+            <div>
+                @Html.EditorFor(model => model.restaurante_name)
+                @Html.ValidationMessageFor(model => model.restaurante_name)
+            </div>
+        }
+    </fieldset>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    }
