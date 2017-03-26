@@ -9,7 +9,7 @@ namespace Restaurante_APP.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Read()
         {
             return View();
         }

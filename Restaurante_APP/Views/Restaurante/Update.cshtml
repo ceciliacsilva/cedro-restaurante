@@ -1,24 +1,24 @@
 ﻿@model Restaurante_APP.Models.Restaurante
 @{
-    ViewBag.Title = "Create Restaurante";
+    ViewBag.Title = "Update Restaurante";
 }
 
 <div>
     <br />
     <h2>CADASTRO DE RESTAURANTE</h2>
     <fieldset class="scheduler-border">
-        <legend  class="scheduler-border">Dados</legend>
+        <legend class="scheduler-border">Dados</legend>
         @using (Html.BeginForm(FormMethod.Post))
         {
-            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.restaurante_id)
             <p>Nome do restaurante</p>
 
             <div>
-                @Html.EditorFor(model => model.restaurante_name)
+                @Html.EditorFor(model => model.restaurante_name, Model.restaurante_name)
                 @Html.ValidationMessageFor(model => model.restaurante_name)
             </div>
             <br />
-    
+
             <a href="/Restaurante/Read" class="btn btn-primary button-red">
                 <span class="glyphicon glyphicon-remove"></span> Cancelar
             </a>
@@ -31,4 +31,4 @@
 
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
-    }
+}

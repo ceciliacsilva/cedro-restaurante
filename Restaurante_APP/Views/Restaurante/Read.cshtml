@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Restaurante_APP.Models.Restaurante>
+@{
+    ViewBag.Title = "Read Restaurante";
+}
+
+<div>
+    <br />
+    <h2>RESTAURANTES</h2>
+
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Filtros</legend>
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            <p>Nome</p>
+            <input type="text" name="r_name"/>
+            <br />
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search">Pesquisar</span>
+            </button>
+            <a href="~/Restaurante/Create" class="btn btn-primary button-green">
+                <span class="glyphicon glyphicon-plus"> Cadastrar Novo Restaurante</span>
+            </a>
+        }
+    </fieldset>
+    <br />
+    <p>@ViewBag.MsgUpdate</p>
+    <br />
+    <div class="scroll">
+          <table class="restaurante">
+                <tr class="restaurante">
+                    <th class="icon"> </th>
+                    <th class="icon"> </th>
+                    <th class="restaurante">Restaurantes</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr class="restaurante">
+                        <td class="restaurante">
+                            <a href=@string.Concat("/Restaurante/Delete/", item.restaurante_id)>
+                                <span class="glyphicon glyphicon-minus icon-red"></span>
+                            </a>
+                        </td>
+                        <td class="restaurante">
+                            <a href=@string.Concat("/Restaurante/Update/", item.restaurante_id) >
+                                <span class="glyphicon glyphicon-pencil icon-blue"></span>
+                            </a>
+                        </td>   
+                        <td class="restaurante">@Html.DisplayFor(modelItem => item.restaurante_name)</td>
+                    </tr>
+                }
+            </table>
+        </div>
+</div>
+

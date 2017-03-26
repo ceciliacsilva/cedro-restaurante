@@ -23,7 +23,8 @@ namespace Restaurante_APP.Models
     
         public int restaurante_id { get; set; }
         [Required(ErrorMessage = "Campo 'Nome Restaurante' é requerido.")]
-        [RegularExpression(@"[A-Za-z0-9]{1,50}", ErrorMessage = "Mínimo 1 e máximo 50.")]
+        [RegularExpression(@"[A-Za-z0-9]+?\ [A-Za-z0-9]+", ErrorMessage = "Caracteres permitidos: letras, números e espaço.")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Digite pelo menos 1 caracter e no máximo 50.")]
         public string restaurante_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

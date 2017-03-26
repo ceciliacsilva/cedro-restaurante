@@ -231,9 +231,11 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Restaurante\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Home\Read.cshtml" />
+    <Content Include="Views\Menu\Read.cshtml" />
     <Content Include="Views\Restaurante\Create.cshtml" />
+    <Content Include="Views\Restaurante\Read.cshtml" />
+    <Content Include="Views\Restaurante\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

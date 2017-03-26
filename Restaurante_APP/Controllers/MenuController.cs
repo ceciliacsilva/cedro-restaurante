@@ -9,7 +9,7 @@ namespace Restaurante_APP.Controllers
     public class MenuController : Controller
     {
         // GET: Menu
-        public ActionResult Index()
+        public ActionResult Read()
         {
             return View();
         }
