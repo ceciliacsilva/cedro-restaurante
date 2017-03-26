@@ -98,6 +98,11 @@ namespace Restaurante_APP.Controllers
 
             /* TODO - Remove pratos juntos */
             Restaurante r_delete = db.Restaurante.Find(id);
+            if (r_delete == null)
+            {
+                ViewBag.MsgUpdate = "ID não encotrado.";
+                return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
+            }
             db.Restaurante.Remove(r_delete);
             db.SaveChanges();
 
