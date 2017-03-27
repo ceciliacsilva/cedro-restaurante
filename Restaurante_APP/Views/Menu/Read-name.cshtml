@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Restaurante_APP.Models.Menu_view>
+@{
+    ViewBag.Title = "Read Prato";
+}
+
+<div>
+    <br />
+    <h2>PRATOS</h2>
+
+    <a class="btn btn-primary button-green" href="/Menu/Create">
+        <span class="glyphicon glyphicon-plus"> Cadastrar novo prato </span>
+    </a>
+
+    <br />
+    <div class="scroll">
+        <table class="restaurante">
+            <tr class="restaurante">
+                <th class="icon"> </th>
+                <th class="icon"> </th>
+                <th class="restaurante">Restaurante</th>
+                <th class="restaurante">Prato</th>
+                <th class="restaurante">Preço</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="restaurante">
+                    <td class="restaurante">
+                        <a href=@String.Concat("/Menu/Delete/", item.prato_id)>
+                            <span class="glyphicon glyphicon-minus icon-red"></span>
+                        </a>
+                    </td>
+                    <td class="restaurante">
+                        <a href=@String.Concat("/Menu/Update/", item.prato_id)>
+                            <span class="glyphicon glyphicon-pencil icon-blue"></span>
+                        </a>
+                    </td>
+                    <td class="restaurante">@Html.DisplayFor(modelItem => item.restaurante_name)</td>
+                    <td class="restaurante">@Html.DisplayFor(modelItem => item.prato_name)</td>
+                    <td class="restaurante">@Html.DisplayFor(modelItem => item.preco)</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

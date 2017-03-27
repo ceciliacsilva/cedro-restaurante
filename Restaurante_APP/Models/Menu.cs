@@ -24,9 +24,17 @@ namespace Restaurante_APP.Models
         public string prato_name { get; set; }
 
         [Required(ErrorMessage = "Campo 'Preço' é requerido.")]
-        [RegularExpression(@"[0-9]+\.?[0-9]{0,2}", ErrorMessage = "Caso esteje usando ',' troque por '.'. Formato desejado = 2.00 ou 2")]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "Apenas números inteiros - (erro na escrita do banco)")]
         public double preco { get; set; }
     
         public virtual Restaurante Restaurante { get; set; }
+    }
+
+    public class Menu_view
+    {
+        public int prato_id;
+        public string restaurante_name;
+        public string prato_name;
+        public double preco;
     }
 }

@@ -22,7 +22,7 @@
             @Html.ValidationMessageFor(model => model.prato_name)
 
             <p>Preço</p>
-            @Html.TextBoxFor(model => model.preco, new { type = "text"})
+            @Html.EditorFor(model => model.preco)
             @Html.ValidationMessageFor(model => model.preco)
 
             <br />
