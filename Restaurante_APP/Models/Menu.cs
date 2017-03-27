@@ -11,12 +11,20 @@ namespace Restaurante_APP.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Menu
     {
         public int prato_id { get; set; }
         public int restaurante_id { get; set; }
+
+        [Required(ErrorMessage = "Campo 'Prato' é requerido.")]
+        [RegularExpression(@"[A-Za-z0-9]+\ ?[A-Za-z0-9]+", ErrorMessage = "Caracteres permitidos: letras, números e espaço.")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Digite pelo menos 1 caracter e no máximo 50.")]
         public string prato_name { get; set; }
+
+        [Required(ErrorMessage = "Campo 'Preço' é requerido.")]
+        [RegularExpression(@"[0-9]+\.?[0-9]{0,2}", ErrorMessage = "Caso esteje usando ',' troque por '.'. Formato desejado = 2.00 ou 2")]
         public double preco { get; set; }
     
         public virtual Restaurante Restaurante { get; set; }

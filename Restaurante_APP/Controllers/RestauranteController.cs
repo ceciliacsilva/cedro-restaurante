@@ -105,7 +105,6 @@ namespace Restaurante_APP.Controllers
             }
             db.Restaurante.Remove(r_delete);
             db.SaveChanges();
-
             return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
         }
     }
