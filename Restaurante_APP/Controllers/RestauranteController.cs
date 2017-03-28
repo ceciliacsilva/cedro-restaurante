@@ -104,7 +104,18 @@ namespace Restaurante_APP.Controllers
                 return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
             }
             db.Restaurante.Remove(r_delete);
+
+            var p_delete = db.Menu.Where(q => q.restaurante_id == id);
+            if (p_delete == null)
+            {
+                db.SaveChanges();
+                ViewBag.MsgUpdate = "Restaurante sem pratos cadastrados";
+                return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
+            }
+
+            db.Menu.RemoveRange(p_delete);
             db.SaveChanges();
+            ViewBag.MsgUpdate = "Os pratos ligados a esse restaurante também foram deletados.";
             return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
         }
     }
