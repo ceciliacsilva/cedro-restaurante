@@ -73,8 +73,9 @@ namespace Restaurante_APP.Controllers
                 ViewBag.MsgUpdate = "ID (prato) não encontrado.";
                 return View("Read-name", Pratos_Restaurante());
             }
-
-            ViewBag.restaurante_id = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
+            var restaurante_list = new SelectList(db.Restaurante,
+                 "restaurante_id", "restaurante_name", p_update.restaurante_id);
+            ViewBag.restaurante_id = restaurante_list;
             return View(p_update);
         }
 
