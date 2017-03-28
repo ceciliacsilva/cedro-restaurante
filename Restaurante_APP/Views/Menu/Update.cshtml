@@ -1,7 +1,43 @@
-﻿
+﻿@model Restaurante_APP.Models.Menu
 @{
-    ViewBag.Title = "Update";
+    ViewBag.Title = "Update - Prato";
 }
 
-<h2>Update</h2>
+<div>
+    <br />
+    <h2>
+        CADASTRO DE PRATO
+    </h2>
 
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Dados</legend>
+        @using (Html.BeginForm(FormMethod.Post))
+        {
+            @Html.HiddenFor(model => model.prato_id)
+
+            <p>Restaurante</p>
+            @Html.DropDownList("restaurante_id")
+
+            <p>Prato</p>
+            @Html.EditorFor(model => model.prato_name, Model.prato_name)
+            @Html.ValidationMessageFor(model => model.prato_name)
+
+            <p>Preço</p>
+            @Html.EditorFor(model => model.preco, Model.preco)
+            @Html.ValidationMessageFor(model => model.preco)
+
+            <br />
+            <a class="btn btn-primary button-red" href="/Menu/Read">
+                <span class="glyphicon glyphicon-remove"> Cancelar</span>
+            </a>
+            <button type="submit" class="btn btn-primary button-green">
+                <span class="glyphicon glyphicon-floppy-disk"> Salvar</span>
+            </button>
+        }
+
+    </fieldset>
+</div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

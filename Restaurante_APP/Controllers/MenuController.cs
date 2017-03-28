@@ -35,7 +35,9 @@ namespace Restaurante_APP.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.restaurante_id = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
+            var restaurante_list = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
+            ViewBag.restaurante_id = restaurante_list;
+            //ViewBag.restaurante_id = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
             return View();
         }
 
@@ -43,7 +45,7 @@ namespace Restaurante_APP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Menu prato)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !(db.Restaurante.Find(prato.restaurante_id) == null))
             {
                 db.Menu.Add(prato);
                 db.SaveChanges();
@@ -51,13 +53,41 @@ namespace Restaurante_APP.Controllers
                 return View("Read-name", Pratos_Restaurante());
             }
 
-            ViewBag.restaurante_id = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
+            ViewBag.MsgID = "Cadastre um restaurante para cadastrar o prato.";
+            var restaurante_list = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
+            ViewBag.restaurante_id = restaurante_list;
             return View();
         }
 
         public ActionResult Update(int? id)
         {
-            return View();
+            if(id == null)
+            {
+                ViewBag.MsgUpdate = "ID Vazio.";
+                return View("Read-name", Pratos_Restaurante());
+            }
+
+            var p_update = db.Menu.Find(id);
+            if (p_update == null)
+            {
+                ViewBag.MsgUpdate = "ID (prato) não encontrado.";
+                return View("Read-name", Pratos_Restaurante());
+            }
+
+            ViewBag.restaurante_id = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
+            return View(p_update);
+        }
+
+        [HttpPost]
+        public ActionResult Update(Menu prato)
+        {
+            var p_update = db.Menu.Find(prato.prato_id);
+            p_update.restaurante_id = prato.restaurante_id;
+            p_update.prato_name = prato.prato_name;
+            p_update.preco = prato.preco;
+            db.SaveChanges();
+
+            return View("Read-name", Pratos_Restaurante());
         }
 
         public ActionResult Delete(int? id)

@@ -30,14 +30,6 @@ namespace Restaurante_APP.Models
         public virtual Restaurante Restaurante { get; set; }
     }
 
-    public class Menu_delete
-    {
-        public int prato_id { get; set; }
-        public int restaurante_id { get; set; }
-        public string prato_name { get; set; }
-        public double preco { get; set; }
-    }
-
     public class Menu_view
     {
         public int prato_id;
