@@ -43,7 +43,10 @@ namespace Restaurante_APP.Controllers
                 return View(db.Restaurante.OrderBy(q => q.restaurante_name));
             }
 
-            var restaurante = db.Restaurante.OrderBy(q => q.restaurante_name).Where(q => q.restaurante_name == r_name); 
+            //var restaurante = db.Restaurante.OrderBy(q => q.restaurante_name).Where(q => q.restaurante_name == r_name); 
+            var restaurante = from q_res in db.Restaurante
+                              where q_res.restaurante_name == r_name
+                              select q_res;
             return View(restaurante);
         }
 

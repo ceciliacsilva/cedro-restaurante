@@ -17,7 +17,7 @@ namespace Restaurante_APP.Models
         public int restaurante_id { get; set; }
 
         [Required(ErrorMessage = "Campo requerido.")]
-        [RegularExpression(@"[A-Za-z0-9á-úÁ-ÚãõêàÀ]*\ ?[A-Za-z0-9á-úÁ-ÚãõêàÀ]+", ErrorMessage = "Caracteres permitidos: letras, números e espaço.")]
+        [RegularExpression(@"([A-Za-zç0-9á-úÁ-ÚãõêàÀ]*\ ?[A-Za-zç0-9á-úÁ-ÚãõêàÀ]+)+", ErrorMessage = "Caracteres permitidos: letras, números e espaço.")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Digite pelo menos 1 caracter e no máximo 50.")]
         public string prato_name { get; set; }
 
