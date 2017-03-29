@@ -10,21 +10,25 @@
         <legend class="scheduler-border">Dados</legend>
         @using (Html.BeginForm(FormMethod.Post))
         {
-            @Html.HiddenFor(model => model.restaurante_id)
-            <p>Nome do restaurante</p>
+            <div class="form-indent">
+                @Html.HiddenFor(model => model.restaurante_id)
+                
+                <p class="p-label-error">Nome do restaurante</p>
+                <div class="div-error">
+                    @Html.ValidationMessageFor(model => model.restaurante_name)
+                </div>
+                @Html.EditorFor(model => model.restaurante_name,  Model.restaurante_name,
+                                    new { htmlAttributes = new { @class = "form-control" } } )
+                
+                <br />
 
-            <div>
-                @Html.EditorFor(model => model.restaurante_name, Model.restaurante_name)
-                @Html.ValidationMessageFor(model => model.restaurante_name)
+                <a href="/Restaurante/Read" class="btn btn-primary button-red">
+                    <span class="glyphicon glyphicon-remove"></span> Cancelar
+                </a>
+                <button type="submit" class="btn btn-primary button-green">
+                    <span class="glyphicon glyphicon-floppy-save"></span> Salvar
+                </button>
             </div>
-            <br />
-
-            <a href="/Restaurante/Read" class="btn btn-primary button-red">
-                <span class="glyphicon glyphicon-remove"></span> Cancelar
-            </a>
-            <button type="submit" class="btn btn-primary button-green">
-                <span class="glyphicon glyphicon-floppy-save"></span> Salvar
-            </button>
         }
     </fieldset>
 </div>

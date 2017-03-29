@@ -42,9 +42,8 @@ namespace Restaurante_APP.Controllers
             {
                 return View(db.Restaurante.OrderBy(q => q.restaurante_name));
             }
-            
-            //var restaurante = db.Restaurante.OrderBy(q => q.restaurante_name).Where(q => q.restaurante_name == r_name);
-            var restaurante = from b in db.Restaurante where b.restaurante_name == r_name select b;
+
+            var restaurante = db.Restaurante.OrderBy(q => q.restaurante_name).Where(q => q.restaurante_name == r_name); 
             return View(restaurante);
         }
 
@@ -69,11 +68,8 @@ namespace Restaurante_APP.Controllers
         {
             if (ModelState.IsValid)
             {
-                var r_db = db.Restaurante.FirstOrDefault(x => x.restaurante_id == restaurante.restaurante_id);
-                r_db.restaurante_name = restaurante.restaurante_name;
-
-                //db.Entry(restaurante).State = EntityState.Modified;
-
+                var r_update = db.Restaurante.Find(restaurante.restaurante_id);
+                r_update.restaurante_name = restaurante.restaurante_name;
                 db.SaveChanges();
 
                 ViewBag.MsgUpdate = "Atualizado com sucesso.";
@@ -92,7 +88,6 @@ namespace Restaurante_APP.Controllers
                 return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
             }
 
-            /* TODO - Remove pratos juntos */
             Restaurante r_delete = db.Restaurante.Find(id);
             if (r_delete == null)
             {

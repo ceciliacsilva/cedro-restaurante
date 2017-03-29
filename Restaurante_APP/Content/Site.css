@@ -32,7 +32,7 @@ legend.scheduler-border {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 18px;
     margin: 4px 2px;
 }
 
@@ -44,7 +44,19 @@ legend.scheduler-border {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 18px;
+    margin: 4px 2px;
+}
+
+.button-blue {
+    background-color: #00008b;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
     margin: 4px 2px;
 }
 

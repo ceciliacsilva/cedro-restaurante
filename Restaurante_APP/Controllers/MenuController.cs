@@ -12,7 +12,8 @@ namespace Restaurante_APP.Controllers
         public IEnumerable<Menu_view> Pratos_Restaurante()
         {
             var pratos = (from prato in db.Menu
-                          join restaurante in db.Restaurante on prato.restaurante_id equals restaurante.restaurante_id
+                          join restaurante in db.Restaurante 
+                          on prato.restaurante_id equals restaurante.restaurante_id
                           select new Menu_view
                           {
                               prato_id = prato.prato_id,
@@ -27,7 +28,6 @@ namespace Restaurante_APP.Controllers
         public ActionResult Read()
         {
             return View("Read-name", Pratos_Restaurante());
-            //return View("Read-id", db.Menu.OrderBy(q => q.prato_name));
         }
 
         public ActionResult Create()
@@ -49,7 +49,7 @@ namespace Restaurante_APP.Controllers
                 return View("Read-name", Pratos_Restaurante());
             }
 
-            ViewBag.MsgID = "Cadastre um restaurante para cadastrar o prato.";
+            ViewBag.MsgID = "Cadastre um restaurante antes de cadastrar o prato.";
             var restaurante_list = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
             ViewBag.restaurante_id = restaurante_list;
             return View();

@@ -19,10 +19,11 @@
                 @Html.EditorFor(model => model.restaurante_name, new { htmlAttributes = new { @class = "form-control" } })
                 <br />
 
-                <a href="/Restaurante/Read" class="btn btn-primary button-red">
+                <a href="/Restaurante/Read" class="btn btn-danger button-red">
                     <span class="glyphicon glyphicon-remove"></span> Cancelar
                 </a>
-                <button type="submit" class="btn btn-primary button-green">
+                &nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-success button-green">
                     <span class="glyphicon glyphicon-floppy-save"></span> Salvar
                 </button>
             </div>
@@ -32,4 +33,4 @@
 
 @section Scripts{
     @Scripts.Render("~/bundles/jqueryval")
-    }
+}
