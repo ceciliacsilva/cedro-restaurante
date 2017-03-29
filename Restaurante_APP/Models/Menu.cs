@@ -18,12 +18,12 @@ namespace Restaurante_APP.Models
         public int prato_id { get; set; }
         public int restaurante_id { get; set; }
 
-        [Required(ErrorMessage = "Campo 'Prato' é requerido.")]
-        [RegularExpression(@"[A-Za-z0-9]+\ ?[A-Za-z0-9]+", ErrorMessage = "Caracteres permitidos: letras, números e espaço.")]
+        [Required(ErrorMessage = "Campo requerido.")]
+        [RegularExpression(@"[A-Za-z0-9]*\ ?[A-Za-z0-9]+", ErrorMessage = "Caracteres permitidos: letras, números e espaço.")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Digite pelo menos 1 caracter e no máximo 50.")]
         public string prato_name { get; set; }
 
-        [Required(ErrorMessage = "Campo 'Preço' é requerido.")]
+        [Required(ErrorMessage = "Campo requerido.")]
         [RegularExpression(@"[0-9]+", ErrorMessage = "Apenas números inteiros - (erro na escrita do banco)")]
         public double preco { get; set; }
     

@@ -4,39 +4,48 @@
     ViewBag.Title = "Create Prato";
 }
 
-<div>
-    <br />
-    <h2>CADASTRO DE PRATO</h2>
-    <fieldset class="scheduler-border">
-        <legend class="scheduler-border">Dados</legend>
-        @using (Html.BeginForm(FormMethod.Post))
-        {
-            @Html.AntiForgeryToken()
+<div class="body-content">
+    <div>
+        <br />
+        <h2>CADASTRO DE PRATO</h2>
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Dados</legend>
+            @using (Html.BeginForm(FormMethod.Post))
+            {
+                <div class="form-indent">
+                    @Html.AntiForgeryToken()
 
-            <p>Restaurante</p>
-            @Html.DropDownList("restaurante_id")
+                    <p>Restaurante</p>
+                    @Html.DropDownList("restaurante_id", null, htmlAttributes: new { @class = "form-control"})
 
-            <p>Prato</p>
-            @Html.EditorFor(model => model.prato_name)
-            @Html.ValidationMessageFor(model => model.prato_name)
-
-            <p>Preço</p>
-            @Html.EditorFor(model => model.preco)
-            @Html.ValidationMessageFor(model => model.preco)
-
-            <br />
-            <a class="btn btn-primary button-red" href="/Menu/Read">
-                <span class="glyphicon glyphicon-remove"> Cancelar</span>
-            </a>
-            <button type="submit" class="btn btn-primary button-green">
-                <span class="glyphicon glyphicon-floppy-disk"> Salvar</span>
-            </button>
-        }
-   
-    </fieldset>
+                    <br />
+                    <p class="p-label-error">Prato</p>
+                    <div class="div-error">
+                        @Html.ValidationMessageFor(model => model.prato_name)
+                    </div>
+                    @Html.EditorFor(model => model.prato_name, new { htmlAttributes = new { @class = "form-control" } })
+                                        
+                    <br />
+                    <p class="p-label-error">Preço</p>
+                    <div class="div-error">
+                        @Html.ValidationMessageFor(model => model.preco)
+                    </div>
+                    @Html.EditorFor(model => model.preco, new { htmlAttributes = new { @class = "form-control" } })
+                   
+                    <br />
+                    <a class="btn btn-primary button-red" href="/Menu/Read">
+                        <span class="glyphicon glyphicon-remove"> Cancelar</span>
+                    </a>
+                    <button type="submit" class="btn btn-primary button-green">
+                        <span class="glyphicon glyphicon-floppy-disk"> Salvar</span>
+                    </button>
+                </div>
+                }
+        </fieldset>
+    </div>
 </div>
 
 @section Scripts{
-    @Scripts.Render("~/bundles/jqueryval")
+      @Scripts.Render("~/bundles/jqueryval")
 }
 

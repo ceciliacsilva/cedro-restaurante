@@ -1,9 +1,6 @@
 ﻿using Restaurante_APP.Models;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Restaurante_APP.Controllers
@@ -30,14 +27,13 @@ namespace Restaurante_APP.Controllers
         public ActionResult Read()
         {
             return View("Read-name", Pratos_Restaurante());
-            //return View("Read", db.Menu.OrderBy(q => q.prato_name));
+            //return View("Read-id", db.Menu.OrderBy(q => q.prato_name));
         }
 
         public ActionResult Create()
         {
             var restaurante_list = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
             ViewBag.restaurante_id = restaurante_list;
-            //ViewBag.restaurante_id = new SelectList(db.Restaurante, "restaurante_id", "restaurante_name");
             return View();
         }
 
