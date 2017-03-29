@@ -9,8 +9,6 @@
 
 namespace Restaurante_APP.Models
 {
-    using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Menu
@@ -19,7 +17,7 @@ namespace Restaurante_APP.Models
         public int restaurante_id { get; set; }
 
         [Required(ErrorMessage = "Campo requerido.")]
-        [RegularExpression(@"[A-Za-z0-9]*\ ?[A-Za-z0-9]+", ErrorMessage = "Caracteres permitidos: letras, números e espaço.")]
+        [RegularExpression(@"[A-Za-z0-9á-úÁ-ÚãõêàÀ]*\ ?[A-Za-z0-9á-úÁ-ÚãõêàÀ]+", ErrorMessage = "Caracteres permitidos: letras, números e espaço.")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Digite pelo menos 1 caracter e no máximo 50.")]
         public string prato_name { get; set; }
 
