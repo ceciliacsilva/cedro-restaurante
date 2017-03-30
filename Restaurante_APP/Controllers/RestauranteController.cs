@@ -1,6 +1,7 @@
 ﻿using Restaurante_APP.Models;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.Mvc;
 
 namespace Restaurante_APP.Controllers
@@ -25,6 +26,7 @@ namespace Restaurante_APP.Controllers
                 db.SaveChanges();
 
                 ViewBag.MsgUpdate = "Restaurante criado com sucesso.";
+                ViewBag.str_search = "Pesquisar";
                 return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
             }
             return View("Create");
@@ -32,14 +34,26 @@ namespace Restaurante_APP.Controllers
 
         public ActionResult Read()
         {
+            ViewBag.str_search = "Pesquisar";
             return View(db.Restaurante.OrderBy(q => q.restaurante_name));
         }
 
         [HttpPost]
         public ActionResult Read(String r_name)
         {
+            string regex_space = @"[\ ]+";
+            Regex r = new Regex(regex_space, RegexOptions.IgnoreCase);
+            Match m = r.Match(r_name);
+            if (r_name.Equals("") | m.Success)
+            {
+                ViewBag.str_search = "Pesquisar";
+            }
+            else
+            {
+                ViewBag.str_search = r_name;
+            }
             var restaurante = db.Restaurante.OrderBy(q => q.restaurante_name).
-                                    Where(q => q.restaurante_name.Contains(r_name)); 
+                                    Where(q => q.restaurante_name.Contains(r_name));
             return View(restaurante);
         }
 
@@ -48,12 +62,14 @@ namespace Restaurante_APP.Controllers
             if(id == null)
             {
                 ViewBag.MsgUpdate = "ID vazio";
+                ViewBag.str_search = "Pesquisar";
                 return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
             }
             Restaurante r_update = db.Restaurante.Find(id);
             if (r_update == null)
             {
                 ViewBag.MsgUpdate = "ID não encontrado";
+                ViewBag.str_search = "Pesquisar";
                 return View("Read",db.Restaurante.OrderBy(q => q.restaurante_name));
             }
             return View(r_update);
@@ -70,9 +86,11 @@ namespace Restaurante_APP.Controllers
 
                 ViewBag.MsgUpdate = "Atualizado com sucesso.";
 
+                ViewBag.str_search = "Pesquisar";
                 return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
             }
 
+            ViewBag.str_search = "Pesquisar";
             return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
         }
 
@@ -81,6 +99,7 @@ namespace Restaurante_APP.Controllers
             if(id == null)
             {
                 ViewBag.MsgUpdate = "ID Vazio";
+                ViewBag.str_search = "Pesquisar";
                 return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
             }
 
@@ -88,6 +107,7 @@ namespace Restaurante_APP.Controllers
             if (r_delete == null)
             {
                 ViewBag.MsgUpdate = "ID não encotrado.";
+                ViewBag.str_search = "Pesquisar";
                 return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
             }
             db.Restaurante.Remove(r_delete);
@@ -97,12 +117,14 @@ namespace Restaurante_APP.Controllers
             {
                 db.SaveChanges();
                 ViewBag.MsgUpdate = "Restaurante sem pratos cadastrados";
+                ViewBag.str_search = "Pesquisar";
                 return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
             }
 
             db.Menu.RemoveRange(p_delete);
             db.SaveChanges();
             ViewBag.MsgUpdate = "Os pratos ligados a esse restaurante também foram deletados.";
+            ViewBag.str_search = "Pesquisar";
             return View("Read", db.Restaurante.OrderBy(q => q.restaurante_name));
         }
     }
