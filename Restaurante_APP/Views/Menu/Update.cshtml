@@ -19,6 +19,7 @@
                 <p>Restaurante</p>
                 @Html.DropDownList("restaurante_id", null, htmlAttributes: new { @class = "form-control"})
 
+                <br />
                 <p class="p-label-error">Prato</p>
                 <div class="div-error">
                     @Html.ValidationMessageFor(model => model.prato_name)
@@ -26,7 +27,8 @@
                 @Html.EditorFor(model => model.prato_name, Model.prato_name, 
                                    new { htmlAttributes = new { @class = "form-control" } })
 
-                <p class="p-label-error">Preço</p>
+                <br />
+                <p class="p-label-error">Preço(R$)</p>
                 <div>
                     @Html.ValidationMessageFor(model => model.preco)
                 </div>
@@ -34,10 +36,11 @@
                                 new { htmlAttributes = new { @class = "form-control" } }) 
 
                 <br />
-                <a class="btn btn-primary button-red" href="/Menu/Read">
+                <a class="btn btn-danger button-red" href="/Menu/Read">
                     <span class="glyphicon glyphicon-remove"> Cancelar</span>
                 </a>
-                <button type="submit" class="btn btn-primary button-green">
+                &nbsp;&nbsp;&nbsp;
+                <button type="submit" class="btn btn-success button-green">
                     <span class="glyphicon glyphicon-floppy-disk"> Salvar</span>
                 </button>
             </div>
