@@ -13,8 +13,9 @@ namespace Restaurante_APP.Controllers
         public IEnumerable<Menu_view> Pratos_Restaurante()
         {
             var pratos = (from prato in db.Menu
-                          join restaurante in db.Restaurante 
+                          join restaurante in db.Restaurante
                           on prato.restaurante_id equals restaurante.restaurante_id
+                          orderby restaurante.restaurante_name ascending, prato.prato_name ascending
                           select new Menu_view
                           {
                               prato_id = prato.prato_id,
